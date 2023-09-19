@@ -8,6 +8,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var port = 678;
+app.listen(port, () => {
+    console.log(`Le serveur est en cours d'écoute sur le port ${port}`);
+  });
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
