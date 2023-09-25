@@ -87,9 +87,8 @@ router.post('/', (req, res) => {
 
     if(!title || !content) return res.sendStatus(404);
 
-    const lastItemIndex = MENU?.length !== 0 ? MENU.film - 1 : undefined;
-    const lastId = lastItemIndex !== undefined ? MENU[lastItemIndex]?.id : 0;
-    const nextIndex = lastId + 1; 
+    const lastItemIndex = MENU?.length !== 0 ? MENU[MENU.length].id - 1 : undefined;
+    const nextIndex = lastItemIndex + 1; 
 
     const newFilm = {
         id : nextIndex,
