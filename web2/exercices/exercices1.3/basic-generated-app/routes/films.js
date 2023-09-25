@@ -66,9 +66,11 @@ router.post('/', (req, res) => {
 
     if(!title || !duration || !budget || !link) return res.sendStatus(404);
 
-    const lastItemIndex = CATALOGUE_FILM?.length !== 0 ? CATALOGUE_FILM.film - 1 : undefined;
-    const lastId = lastItemIndex !== undefined ? CATALOGUE_FILM[lastItemIndex]?.id : 0;
-    const nextIndex = lastId + 1; 
+    const lastId = CATALOGUE_FILM?.length !== 0 ? CATALOGUE_FILM[CATALOGUE_FILM.length -1].id : undefined;
+    const nextIndex = lastId + 1;
+
+    console.log(lastId);
+    console.log(nextIndex);
 
     const newFilm = {
         id : nextIndex,

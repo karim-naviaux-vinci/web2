@@ -8,3 +8,7 @@ Content-Type: application/json
     "budget" : 140000000,
     "link" : "www.wiki.com"
 }
+
+
+### GET ALL
+GET http://localhost:3000/films
