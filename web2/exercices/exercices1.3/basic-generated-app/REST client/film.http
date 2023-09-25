@@ -1,0 +1,10 @@
+### creation film
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+    "title" : "new film",
+    "duration" : 150,
+    "budget" : 140000000,
+    "link" : "www.wiki.com"
+}

@@ -1,0 +1,8 @@
+### creation a pizza
+POST http://localhost:3000/pizzas
+Content-Type: application/json
+
+{
+    "title" : "new pizza",
+    "content" : "content"
+}

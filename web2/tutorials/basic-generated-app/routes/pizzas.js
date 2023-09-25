@@ -78,4 +78,27 @@ router.get('/', (req, res, next) => {
     res.json(orderedMenu ?? MENU);
 });
 
+router.post('/', (req, res) => {
+    const title = req?.body?.title?.length !== 0 ? req.body.title : undefined;
+    const content = req?.body?.content?.length !== 0 ? req.body.content : undefined;
+
+
+    console.log(title + " " + content)
+
+    if(!title || !content) return res.sendStatus(404);
+
+    const lastItemIndex = MENU?.length !== 0 ? MENU.film - 1 : undefined;
+    const lastId = lastItemIndex !== undefined ? MENU[lastItemIndex]?.id : 0;
+    const nextIndex = lastId + 1; 
+
+    const newFilm = {
+        id : nextIndex,
+        title : title,
+        content : content,
+    };
+
+    MENU.push(newFilm);
+    res.json(newFilm);
+
+})
 module.exports = router;
