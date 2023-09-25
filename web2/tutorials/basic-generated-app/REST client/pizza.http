@@ -6,3 +6,6 @@ Content-Type: application/json
     "title" : "new pizza",
     "content" : "content"
 }
+
+### 
+GET http://localhost:3000/pizzas?order=-title

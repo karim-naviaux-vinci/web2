@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
  * GET /pizzas?order=title ascending order by title
  * GET /pizzas?order=-title : descending order by title 
  */
-/*router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     const orderByTitle = 
     req?.query?.order?.includes('title') 
     ? req.query.order 
@@ -46,37 +46,37 @@ router.get('/:id', (req, res) => {
 
     let orderedMenu;
     console.log('order by ' + orderByTitle ?? 'not requested');
-    if(orderByTitle === 'title')
+    if(orderByTitle)
         orderedMenu = [...MENU].sort((a,b) => a.title.localeCompare(b.title));
     if(orderByTitle === '-title') orderedMenu = orderedMenu.reverse();
 
 
     console.log('GET /pizzas');
     res.json(orderedMenu ?? MENU);
-});*/
+});
 
 // demander au prof pq la methode reverse ne fonctionne pas alors que comme ca si
-router.get('/', (req, res, next) => {
-    // operateur ternaire permet de verifier que order = title (avec include()) sinon order = undefined
-    const orderByTitle = 
-    req?.query?.order?.includes('title') 
-    ? req.query.order 
-    : undefined;
+// router.get('/', (req, res, next) => {
+//     // operateur ternaire permet de verifier que order = title (avec include()) sinon order = undefined
+//     const orderByTitle = 
+//     req?.query?.order?.includes('title') 
+//     ? req.query.order 
+//     : undefined;
 
-    let orderedMenu;
-    console.log('order by ' + orderByTitle ?? 'not requested');
-    if(orderByTitle === 'title') {
-        //[...MENU] permet de copier le tableau MENU dans un autre tableau de maniere superficiel (le but est le meme qu'en utilisant une boucle)
+//     let orderedMenu;
+//     console.log('order by ' + orderByTitle ?? 'not requested');
+//     if(orderByTitle === 'title') {
+//         //[...MENU] permet de copier le tableau MENU dans un autre tableau de maniere superficiel (le but est le meme qu'en utilisant une boucle)
 
-        orderedMenu = [...MENU].sort((a, b) => a.title.localeCompare(b.title)); // permet de comparer le nouvelle objet (a) avec l'objet precedent (b)
-    } else if(orderByTitle === '-title') {
-        orderedMenu = [...MENU].sort((a, b) => b.title.localeCompare(a.title));
-    }
+//         orderedMenu = [...MENU].sort((a, b) => a.title.localeCompare(b.title)); // permet de comparer le nouvelle objet (a) avec l'objet precedent (b)
+//     } else if(orderByTitle === '-title') {
+//         orderedMenu = [...MENU].sort((a, b) => b.title.localeCompare(a.title));
+//     }
 
-    console.log('GET /pizzas');
-    // si la valeur orderedMenu est null ou undefined alors elle renvoie menu
-    res.json(orderedMenu ?? MENU);
-});
+//     console.log('GET /pizzas');
+//     // si la valeur orderedMenu est null ou undefined alors elle renvoie menu
+//     res.json(orderedMenu ?? MENU);
+// });
 
 router.post('/', (req, res) => {
     const title = req?.body?.title?.length !== 0 ? req.body.title : undefined;
