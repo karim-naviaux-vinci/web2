@@ -50,7 +50,6 @@ router.get('/', (req, res, next) => {
         orderedMenu = [...MENU].sort((a,b) => a.title.localeCompare(b.title));
     if(orderByTitle === '-title') orderedMenu = orderedMenu.reverse();
 
-
     console.log('GET /pizzas');
     res.json(orderedMenu ?? MENU);
 });
@@ -87,7 +86,7 @@ router.post('/', (req, res) => {
 
     if(!title || !content) return res.sendStatus(404);
 
-    const lastItemIndex = MENU?.length !== 0 ? MENU[MENU.length].id - 1 : undefined;
+    const lastItemIndex = MENU?.length !== 0 ? MENU[MENU.length - 1].id : undefined;
     const nextIndex = lastItemIndex + 1; 
 
     const newFilm = {
@@ -100,4 +99,33 @@ router.post('/', (req, res) => {
     res.json(newFilm);
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
