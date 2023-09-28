@@ -27,23 +27,45 @@ const CATALOGUE_FILM = [
     }
 ];
 
+// router.get('/', (req, res, next) => {
+//     // Extraction de la valeur "minimum_value" depuis les paramètres de la requête
+//     const minimum_value = req.query['minimum-duration'];
+
+//     console.log(minimum_value);
+
+//     let orderedCatalogue;
+    
+//     if (minimum_value && !isNaN(minimum_value)) {
+//         // Si "minimum_value" est un nombre et supérieur ou égal à 143,
+//         // trier le catalogue par la durée
+//         orderedCatalogue = [...CATALOGUE_FILM].sort((a, b) => a.duration.localeCompare(b.duration));
+//     }
+
+//     // Répondre avec le catalogue trié ou le catalogue d'origine
+//     res.json(orderedCatalogue.length > 0 ? orderedCatalogue : CATALOGUE_FILM);
+// });
+
 router.get('/', (req, res, next) => {
-    // Extraction de la valeur "minimum_value" depuis les paramètres de la requête
+    // Extraction de la valeur "minimum-duration" depuis les paramètres de la requête
     const minimum_value = req.query['minimum-duration'];
 
     console.log(minimum_value);
 
-    let orderedCatalogue = [];
-    
+    let orderedCatalogue;
+
     if (minimum_value && !isNaN(minimum_value)) {
         // Si "minimum_value" est un nombre et supérieur ou égal à 143,
-        // trier le catalogue par la durée
-        orderedCatalogue = [...CATALOGUE_FILM].sort((a, b) => a.duration.localeCompare(b.duration));
+        // trier le catalogue par la durée en utilisant localeCompare
+        orderedCatalogue = [...CATALOGUE_FILM].sort((a, b) => String(a.duration).localeCompare(String(b.duration))); //localecompare est utiliser pour comparer des valeur String
+    } else {
+        // Si "minimum_value" n'est pas valide, retourner le catalogue d'origine
+        orderedCatalogue = CATALOGUE_FILM;
     }
 
     // Répondre avec le catalogue trié ou le catalogue d'origine
-    res.json(orderedCatalogue.length > 0 ? orderedCatalogue : CATALOGUE_FILM);
+    res.json(orderedCatalogue);
 });
+
 
 
 router.get('/:id', (req, res) => {
