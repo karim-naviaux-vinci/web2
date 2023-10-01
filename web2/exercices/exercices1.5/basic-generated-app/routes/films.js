@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
         orderedCatalogue = [...CATALOGUE_FILM].sort((a, b) => String(a.duration).localeCompare(String(b.duration))); //localecompare est utiliser pour comparer des valeur String
     } else {
         // Si "minimum_value" n'est pas valide, retourner le catalogue d'origine
-        orderedCatalogue = CATALOGUE_FILM;
+        return res.sendStatus(400)
     }
 
     // Répondre avec le catalogue trié ou le catalogue d'origine

@@ -9,5 +9,5 @@ Content-Type: application/json
     "link" : "www.wiki.com"
 }
 
-### read all film
-GET  http://localhost:3000/films
+### read all film according to minimum-duration
+GET  http://localhost:3000/films/?minimum-duration=160
