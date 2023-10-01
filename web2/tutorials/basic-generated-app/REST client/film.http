@@ -1,0 +1,24 @@
+### creation film
+POST http://localhost:3000/films
+Content-Type: application/json
+
+{
+    "title" : "new film",
+    "duration" : 60,
+    "budget" : 150000000,
+    "link" : "www.lin.be"
+}
+
+### read all table
+GET http://localhost:3000/films
+
+### delete item from table
+DELETE http://localhost:3000/films/2
+
+### update
+PATCH http://localhost:3000/films/2
+Content-Type: application/json
+
+{
+    "title" : "new film 2"
+}

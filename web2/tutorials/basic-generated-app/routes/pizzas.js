@@ -100,8 +100,25 @@ router.post('/', (req, res) => {
 
 })
 
+router.delete('/:id', (req, res) => {
+    console.log("l'id de l'element supprime est : " + req.params.id);
+
+    // renvoie -1 si aucun element est trouvé 
+    const elementSupp = MENU.findIndex(pizza => pizza.id == req.params.id);
+
+    if(elementSupp < 0) return res.sendStatus(404);
+
+    // supprime l'element a partir de l'index stocke et le 2e parametre permet de supprime 1 element
+    // renvoie un tableau de l'element supprime
+    const tbl = MENU.splice(elementSupp, 1); 
+    const itemTbl = tbl[0];
+
+    res.json(itemTbl);
 
 
+})
+
+module.exports = router;
 
 
 
