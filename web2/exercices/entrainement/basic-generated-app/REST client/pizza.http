@@ -1,0 +1,11 @@
+###add pizza
+POST http://localhost:3000/pizzas
+Content-Type: application/json
+
+{
+    "title" : "pizza 3"
+}
+
+
+### get
+GET http://localhost:3000/pizzas?order=-title
