@@ -1,0 +1,30 @@
+video : code de status
+- Voici les "status codes" que nous allons généralement utiliser :
+200 OK : tout s'est bien passé, Express ajoute ce code automatiquement pour nous quand nous utilisons une méthode comme res.json().
+400 Bad Request : pour indiquer au client que la requête contient des paramètres non valides ou n'est pas complète.
+401 Unauthorized : pour indiquer au client qu'il doit s'authentifier pour accéder à cette opération. On renvoie aussi ce code d'erreur quand un client fournit un mauvais username ou password.
+403 Forbidden : le client est connu du serveur, mais il n'a pas les privilèges pour accéder à cette opération (par exemple, le client n'est pas admin et tente d'accéder à une opération seulement accessible à un admin).
+404 Not Found : la ressource demandée n'existe pas, bien que l'URL semble valide.
+409 Conflict : l'état du serveur entre en conflit avec la requête. Par exemple, la requête demande de créer un utilisateur qui existe déjà.
+500 Internal Server Error : le serveur a rencontré une erreur qu'il ne peut pas régler. Par exemple, le serveur de base de données ne répond pas et ne permet donc pas d'accéder aux ressources.
+
+
+video : operation de suppression et modification 
+1e partie de la video (comment supprimer des ressource ?) :
+- DELETE (.../:id = .../{id}) -> supprimer element tableau d'objet
+
+2e partie de la video (comment faire une modif d'une/tous les ressources(s) ?) : 
+- different type de methode http pour faire une modification : PATH et PUT
+- PATH (.../:id = .../{id}) -> remplacer une patie precise de la ressource. ex {"title" : " new film"}
+- PUT (.../:id = .../{id}) -> remplacer l'entierete de la ressource(l'objet). ex : {"title" : "new filme", "content" : "super-hero"}
+
+video : Intro au JSON
+- JSON -> javaScript Objet Notation
+- permet d'avoir un language de sauvegarde de donne pour toutes les application (fait a partir de langage different)
+- permet de communiquer des données entre app client et serveur
+- permet que les donnees survivent au redemmarage des machine (persistance des données)
+- type de données valide : string, number, object, array, boolean, null (pas de undefined) 
+- pour communiquer des données JSON via une RESTful API -> methode de serialisation : res.json()
+- res.json() : transforme des object de JavaScript (pas forcement JS) en format JSON 
+- methode de deserialisation (Parsing) : app.use(express.json()) -> transformer du texte ( format JSON ici) en valeur (object ici) dans des variables
+
