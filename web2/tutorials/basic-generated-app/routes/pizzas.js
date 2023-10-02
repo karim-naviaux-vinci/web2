@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const {serialize, parse} = require('../utils/json');
+const jsonDbPath = __dirname + '/../data/pizzas.json';
+
 //creation pizzas for the menu
 const MENU = [
     {
@@ -27,11 +30,14 @@ const MENU = [
 router.get('/:id', (req, res) => {
     console.log("GET /pizzas/" + req.params.id);
 
-    const indexOfPizzaFound = MENU.findIndex((pizza) => pizza.id == req.params.id);
+    const pizzas = parse(jsonDbPath, MENU);
+
+    const indexOfPizzaFound = pizzas.findIndex((pizza) => pizza.id == req.params.id);
 
     if(indexOfPizzaFound < 0) return res.sendStatus(404);
 
-    res.json(MENU[indexOfPizzaFound]);
+
+    res.json(pizzas[indexOfPizzaFound]);
 })
 
 /** Read all pizzas from the menu
@@ -46,8 +52,11 @@ router.get('/', (req, res, next) => {
 
     let orderedMenu;
     console.log('order by ' + orderByTitle ?? 'not requested');
+
+    const pizzas = parse(jsonDbPath, MENU);
+
     if(orderByTitle)
-        orderedMenu = [...MENU].sort((a,b) => a.title.localeCompare(b.title));
+        orderedMenu = [...pizzas].sort((a,b) => a.title.localeCompare(b.title));
     if(orderByTitle === '-title') orderedMenu = orderedMenu.reverse();
 
     console.log('GET /pizzas');
@@ -86,6 +95,7 @@ router.post('/', (req, res) => {
 
     if(!title || !content) return res.sendStatus(404);
 
+    const pizzas = parse(jsonDbPath, MENU);
     const lastItemIndex = MENU?.length !== 0 ? MENU[MENU.length - 1].id : undefined;
     const nextIndex = lastItemIndex + 1; 
 
@@ -95,7 +105,9 @@ router.post('/', (req, res) => {
         content : content,
     };
 
-    MENU.push(newFilm);
+    pizzas.push(newFilm);
+    serialize(jsonDbPath, pizzas);
+    console.log("POST - " + JSON.stringify(pizzas))
     res.json(newFilm);
 
 })
@@ -103,15 +115,23 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     console.log("l'id de l'element supprime est : " + req.params.id);
 
+    //transfere des object du tableau MENU dans un fichier dans le dossier
+    const pizzas = parse(jsonDbPath, MENU);
+
+    console.log(JSON.stringify(pizzas));
+
     // renvoie -1 si aucun element est trouvé 
-    const elementSupp = MENU.findIndex(pizza => pizza.id == req.params.id);
+    const elementSupp = pizzas.findIndex(pizza => pizza.id == req.params.id);
 
     if(elementSupp < 0) return res.sendStatus(404);
 
     // supprime l'element a partir de l'index stocke et le 2e parametre permet de supprime 1 element
     // renvoie un tableau de l'element supprime
-    const tbl = MENU.splice(elementSupp, 1); 
+    const tbl = pizzas.splice(elementSupp, 1); 
     const itemTbl = tbl[0];
+
+    serialize(jsonDbPath, pizzas)
+    console.log("MAJ :" + JSON.stringify(pizzas));
 
     res.json(itemTbl);
 
