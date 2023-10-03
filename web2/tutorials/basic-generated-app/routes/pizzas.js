@@ -115,7 +115,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
     console.log("l'id de l'element supprime est : " + req.params.id);
 
-    //transfere des object du tableau MENU dans un fichier dans le dossier
+    //transfere des object du tableau MENU dans un fichier dans le dossier et cette variable renvoies un string contenant les objet du MENU
     const pizzas = parse(jsonDbPath, MENU);
 
     console.log(JSON.stringify(pizzas));
@@ -130,6 +130,7 @@ router.delete('/:id', (req, res) => {
     const tbl = pizzas.splice(elementSupp, 1); 
     const itemTbl = tbl[0];
 
+    // 
     serialize(jsonDbPath, pizzas)
     console.log("MAJ :" + JSON.stringify(pizzas));
 
@@ -140,29 +141,3 @@ router.delete('/:id', (req, res) => {
 
 module.exports = router;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = router;

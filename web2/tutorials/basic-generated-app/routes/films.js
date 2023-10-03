@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+const {serialize, parse} = require('../utils/json');
+const jsonDbPath = __dirname + "../data/films.json";
+
 const CATALOGUE_FILM = [
     {
         id:1,
@@ -42,7 +45,9 @@ router.post('/', (req, res) => {
 
     if(!title || !duration || !budget || !link) return res.sendStatus(404);
 
-    const lastIndex = CATALOGUE_FILM[CATALOGUE_FILM.length - 1].id;
+    const films = parse(jsonDbPath, CATALOGUE_FILM);
+
+    const lastIndex = films[films.length - 1].id;
     const nextId = lastIndex + 1;
 
     let newFilm = {
@@ -53,7 +58,9 @@ router.post('/', (req, res) => {
         link : link
     };
 
+    serialize(jsonDbPath, films);
     CATALOGUE_FILM.push(newFilm)
+    console.log("POST - " + JSON.stringify(films))
 
     res.json(newFilm);
 })
