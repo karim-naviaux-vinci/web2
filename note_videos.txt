@@ -25,6 +25,6 @@ video : Intro au JSON
 - permet que les donnees survivent au redemmarage des machine (persistance des données)
 - type de données valide : string, number, object, array, boolean, null (pas de undefined) 
 - pour communiquer des données JSON via une RESTful API -> methode de serialisation : res.json()
-- res.json() : transforme des object de JavaScript (pas forcement JS) en format JSON 
+- res.json() : transforme des object de JavaScript (pas forcement JS) en format JSON jusqu'a la fermeture du serveur
 - methode de deserialisation (Parsing) : app.use(express.json()) -> transformer du texte ( format JSON ici) en valeur (object ici) dans des variables
-
+- pour la sauvegarde des données, on va creer la fonction serialize (code se trouvant sur le dossier tutorials)
