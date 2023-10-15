@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const {parse, serialize} = require('../utils/json');
-const jsonDbPath = __dirname + "../data/films.json";
+const jsonDbPath = __dirname + "/../data/films.json";
 
 const CATALOGUE_FILM = [
     {

@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev" : "nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
     "start": "node ./bin/www"
   },
-  "nodemonConfig":{
-    "ignore" : [
+  "nodemonConfig": {
+    "ignore": [
       "data/*"
     ]
   },
@@ -15,6 +15,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "fs": "^0.0.1-security",
     "morgan": "~1.9.1"
   },
   "devDependencies": {

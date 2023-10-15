@@ -31,16 +31,25 @@ function serialize(filePath, object) {
   fs.writeFileSync(filePath, objectSerialized);
 }
 
-/**
- *
- * @param {String} filePath - path to the .json file
- */
+// /**
+//  *
+//  * @param {String} filePath - path to the .json file
+//  */
+// function createPotentialLastDirectory(filePath) {
+//   const pathToLastDirectory = filePath.substring(0, filePath.lastIndexOf('/'));
+
+//   if (fs.existsSync(pathToLastDirectory)) return;
+
+//   fs.mkdirSync(pathToLastDirectory);
+// }
+
 function createPotentialLastDirectory(filePath) {
   const pathToLastDirectory = filePath.substring(0, filePath.lastIndexOf('/'));
 
-  if (fs.existsSync(pathToLastDirectory)) return;
-
-  fs.mkdirSync(pathToLastDirectory);
+  if (!fs.existsSync(pathToLastDirectory)) {
+    fs.mkdirSync(pathToLastDirectory, { recursive: true });
+  }
 }
+
 
 module.exports = { parse, serialize };
