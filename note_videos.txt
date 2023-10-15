@@ -1,3 +1,6 @@
+generer template projet : npx express-generator --no-view basic-generated-app
+
+
 video : code de status
 - Voici les "status codes" que nous allons généralement utiliser :
 200 OK : tout s'est bien passé, Express ajoute ce code automatiquement pour nous quand nous utilisons une méthode comme res.json().
@@ -28,3 +31,9 @@ video : Intro au JSON
 - res.json() : transforme des object de JavaScript (pas forcement JS) en format JSON jusqu'a la fermeture du serveur
 - methode de deserialisation (Parsing) : app.use(express.json()) -> transformer du texte ( format JSON ici) en valeur (object ici) dans des variables
 - pour la sauvegarde des données, on va creer la fonction serialize (code se trouvant sur le dossier tutorials)
+
+video : Refactoring & fat model
+- fat model : maximum de logique dans l'application (la grosse partie de modification se trouvera dans le dossier models)
+- le dossier route joue le role de controleur en qlq sorte 
+- le dossier models joue le role de service en qlq sorte  
+- les fichier route ( se trouvant dans le dossier route) permet de donner une representation des ressources (ex : renvoyer un tableau de données en format JSON)
