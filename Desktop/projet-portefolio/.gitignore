@@ -1,0 +1,5 @@
+### ignore /diste
+./dist
+
+### ignore /node_module
+./node_module
